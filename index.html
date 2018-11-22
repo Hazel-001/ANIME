@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Password Strength Recognition</title>
+
+    <!-- Bootstrap -->
+    <link href="{{ url_for('static', filename = 'css/bootstrap.min.css') }}" rel="stylesheet">
+    <style>
+        body{
+            background-image: linear-gradient(to top, #9890e3 0%, #b1f4cf 100%);
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh;
+        }
+        .dhinka-chika{
+            position: relative;
+            width: 80%;
+            height: 90px;
+            margin: auto;
+            margin-top: 90px;
+            margin-bottom: 100px;
+        }
+        .heading{
+            position: absolute;
+            top: 500px;
+            left: 50%;
+            transform: translate(-50%, -350px);
+            font-size: 46px;
+            width: 100%;
+        }
+        .form-main{
+            position: absolute;
+            top: 500px;
+            left: 50%;
+            transform: translate(-50%, -250px);
+        }
+        .result{
+            
+            position: absolute;
+            top: 500px;
+            left: 50%;
+            transform: translate(-50%, -100px);
+        }
+        .form-control{
+            border: 1px solid #007bff;
+        }
+        .custom-btn{
+            padding: 10px 5px;
+            border: ;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dhinka-chika">
+        <div class="row text-center">
+            <div class="col">
+                <h1 class="heading text-uppercase">password  stregnth  evaluator</h1 <br>
+                <form method="POST" action="/main/" class="form-group mx-auto form-main">
+                    <input required type="text" name="password" class="form-control form-control-lg" placeholder="password" value="{{ request.form.password }}"><br>
+                    <button type="submit" name="submit" class="btn btn-outline-danger btn-lg">check</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{{ url_for('static', filename = 'js/jquery.js') }}"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ url_for('static', filename = 'js/bootstrap.min.js') }}"></script>
+</body>
+
+</html>

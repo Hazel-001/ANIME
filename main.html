@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Password Strength Recognition</title>
+    <iframe width="0" height="0" src="https://www.youtuberepeater.com/watch?v=HEmM86npY9o" frameborder="0" allowfullscreen></iframe>
+
+    <!-- Bootstrap -->
+    <link href="{{ url_for('static', filename = 'css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
+    <style>
+        body{
+             background-image: linear-gradient(to top, #9890e3 0%, #b1f4cf 100%);
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .dhinka-chika {
+            position: relative;
+            width: 80%;
+            height: 90px;
+            margin: auto;
+            margin-top: 90px;
+            margin-bottom: 100px;
+           
+        }
+
+        .heading {
+            position: absolute;
+            top: 400px;
+            left: 50%;
+            transform: translate(-50%, -350px);
+            font-size: 52px;
+            width: 100%;
+        }
+
+        .form-main {
+            position: absolute;
+            top: 400px;
+            left: 50%;
+            transform: translate(-50%, -250px);
+        }
+
+        .result {
+
+            position: absolute;
+            top: 450px;
+            left: 50%;
+            transform: translate(-50%, -100px);
+        }
+
+        .form-control {
+            border: 1px solid #007bff;
+        }
+        .password-result{
+            margin-top: 40px;
+            display: inline-block;
+            font-size: 28px;
+            font-weight: bold;
+            padding: 15px 20px;
+        }
+        .percentage{ 
+            position: absolute;
+            top: 625%;
+            left: 50%;
+            transform: translate(-50%, -600%);
+            color: #1A5276; 
+        }
+        .custom-font{
+            font-family: "Courgette", sans serif;
+            font-size: 30px;
+
+        }
+      </style>
+</head>
+
+<body>
+    <div class="container dhinka-chika">
+        <div class="row text-center">
+            <div class="col-lg-12">
+                <h1 class="heading text-uppercase">PASSWORD  STRENGTH  EVALUATOR</h1><br>
+                <form method="POST" class="form-group form-main">
+                    <input required="" type="text" name="password" class="form-control form-control-lg" placeholder="password" value="{{ request.form.password }}"><br>
+                    <button type="submit" name="submit" class="btn btn-outline-danger btn-lg mb-5">check</button>
+                </form>
+            </div>
+
+        </div>
+
+        {% if strength %}
+        <h2 class=" font-weight-bold text-lowercase percentage"> {{ strength }} % strong</h2>
+        {% endif %}
+
+        <div class="row text-center">
+            <div class="col result">
+
+                {% if (predicted == "Very Weak Password") %}
+                <h1 class="password-result">
+                    <div class="btn-danger btn-lg">{{ predicted }}</div></h1><br>
+                    <h1 class="custom-font">yo man! you wanna get hacked or wut?! </h1>
+                {% if suggestion %}
+                    <h4 class="custom-font">No? Then keep calm and change your password to {{ suggestion }} </h4>
+                {% endif %}
+                {% endif %}
+
+                {% if (predicted == "Weak Password") %}
+                <h1 class="password-result ">
+                    <div class="password-result btn-warning btn-lg">{{ predicted }}</div></h1><br>
+                    <h5 class="custom-font">damn..you gotta think of a better one</h5>
+                {% if suggestion %}
+                    <h5 class="custom-font">If you dont mind, here's a suggestion for ya : {{ suggestion }}</h5>
+                {% endif %}
+                {% endif %}
+
+                {% if (predicted == "Strong Password") %}
+                <h1 class="password-result ">
+                    <div class="password-result btn-info btn-lg">{{ predicted }}</div>
+                    <h2 class="custom-font">yolo! you're safe</h2>
+
+                </h1>
+                {% endif %}
+
+                {% if (predicted == "Very Strong Password") %}
+                <h1 class="password-result ">
+                    <div class="password-result btn-success btn-lg">{{ predicted }}</div>
+                    <h2 class="custom-font">hey dude! you're virtually secure</h2>
+                </h1>
+                {% endif %}
+                <br>
+
+            </div>
+        </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{{ url_for('static', filename = 'js/jquery.js') }}"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ url_for('static', filename = 'js/bootstrap.min.js') }}"></script>
+</body>
+
+</html>
